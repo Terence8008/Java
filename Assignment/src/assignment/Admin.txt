@@ -1,0 +1,3 @@
+ID, Name, Email, password,
+AD01/ Goku/ CanItBeatGoku@picolo.mail/ Goku123
+AD02/ Vegeta/ LoseToGoku100Times@picolo.mail/ Vegeta123

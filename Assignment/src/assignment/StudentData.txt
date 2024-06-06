@@ -1,0 +1,6 @@
+ID, Name, Email, Password, Intake
+TP01/ Terence/ Terence123@yahoo.com/ Terence123/ 0324
+TP02/ Sam/ Sam23@yahoo.com/ Sam123/ 0324
+TP03/ Jun/ Jun23@yahoo.com/ Jun123/ 0624
+TP04/ Angel/ Angel23@yahoo.com/ Angel123/ 0624
+TP05/ Oppa/ Oppa23@yahoo.com/ Oppa123/ 0224
