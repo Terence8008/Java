@@ -2,29 +2,46 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package assignment_student;
+package assignment;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import javax.swing.JFrame;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+
 
 /**
  *
  * @author Angelina
  */
 public class StudentMain extends javax.swing.JFrame {
-
+    Student LoggedInStudent;
+    ArrayList<Project> AssignedProjects;
+    ArrayList<Project> projects;
+    ArrayList<Student> students;
+    ArrayList<EvaluationResult> evaluationResults;
+    
     /**
      * Creates new form MainFrame
+     * @param student
+     * @param students
+     * @param projects
+     * @param evaluationResults
      */
-    public StudentMain() {
-        initComponents();
+    public StudentMain(Student student, ArrayList<Student> students, ArrayList<Project> projects, ArrayList<EvaluationResult> evaluationResults) {        
+        this.LoggedInStudent = student;
+        this.AssignedProjects = student.getProjects();
+        this.projects = projects;
+        this.students = students;
+        this.evaluationResults = evaluationResults;
+        initComponents(); 
+        MainStudenNameLbl.setText(student.getName());
+        
+        // Initialize table
+        DefaultTableModel model = (DefaultTableModel)MainProjectsTable.getModel();
+        for(Project AssignedProject:AssignedProjects){
+            String [] tableDataRow = {AssignedProject.getProjectID(), AssignedProject.getAssessmentType(), AssignedProject.getSupervisorID(), AssignedProject.getSecondMarkerID(), AssignedProject.getSubmissionDate(), AssignedProject.getPresentationDate()};
+            model.addRow(tableDataRow);
+        }     
     }
 
     /**
@@ -39,50 +56,63 @@ public class StudentMain extends javax.swing.JFrame {
         SubmitProject = new javax.swing.JDialog();
         javax.swing.JLabel jLabel11 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
-        SProjectIDtxt = new javax.swing.JTextField();
-        STypetxt = new javax.swing.JTextField();
         javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
-        javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
-        SSupervisorIDtxt = new javax.swing.JTextField();
-        SSecondtxt = new javax.swing.JTextField();
-        javax.swing.JLabel jLabel9 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
-        SMoodleLinktxt = new javax.swing.JTextField();
+        SubLinkField = new javax.swing.JTextField();
         javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
-        javax.swing.JButton ClearButton = new javax.swing.JButton();
-        javax.swing.JButton AddButton = new javax.swing.JButton();
+        javax.swing.JButton SubCancelBtn = new javax.swing.JButton();
+        javax.swing.JButton SubAddSubmissionBtn = new javax.swing.JButton();
+        SubProjectIDLbl = new javax.swing.JLabel();
+        SubAssTypeLbl = new javax.swing.JLabel();
+        SubDateLbl = new javax.swing.JLabel();
         RequestPresentation = new javax.swing.JDialog();
-        jPanel1 = new javax.swing.JPanel();
-        javax.swing.JLabel jLabel8 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel12 = new javax.swing.JLabel();
-        RSupervisorIDtxt = new javax.swing.JTextField();
-        javax.swing.JButton Requestbtn = new javax.swing.JButton();
-        RProjectIDtxt = new javax.swing.JTextField();
-        RSecondtxt = new javax.swing.JTextField();
-        RTypetxt = new javax.swing.JTextField();
         javax.swing.JLabel jLabel10 = new javax.swing.JLabel();
+        ReqProjectIDLbl = new javax.swing.JLabel();
+        ReqAseTypeLbl = new javax.swing.JLabel();
         javax.swing.JLabel jLabel13 = new javax.swing.JLabel();
-        javax.swing.JLabel jLabel14 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel15 = new javax.swing.JLabel();
-        RBackbtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        ReqCancelbtn = new javax.swing.JButton();
+        javax.swing.JButton ReqRequestbtn = new javax.swing.JButton();
+        ReqDayField = new javax.swing.JTextField();
+        ReqMonthField = new javax.swing.JTextField();
+        ReqYearField = new javax.swing.JTextField();
         CheckGrade = new javax.swing.JDialog();
-        GBackbtn = new javax.swing.JButton();
+        GradeBackbtn = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        GProjecttxt = new javax.swing.JTextField();
-        GTypetxt = new javax.swing.JTextField();
-        GStatustxt = new javax.swing.JTextField();
-        GCheckGradetxt = new javax.swing.JTextField();
+        GradeProjectIDField = new javax.swing.JTextField();
+        GradeAssTypeField = new javax.swing.JTextField();
+        GradeSuperGradeField = new javax.swing.JTextField();
+        GradeFinalGradeField = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        GradeSuperIDLbl = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        GradeSuperCmtField = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        GradeSecondGradeField = new javax.swing.JTextField();
+        GradeSecIDLbl = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        GradeSecondCmtField = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        SearchField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Table1 = new javax.swing.JTable();
-        SubmitProjectbtn = new javax.swing.JButton();
-        RequestPresentationbtn = new javax.swing.JButton();
+        MainProjectsTable = new javax.swing.JTable();
+        MainSubmitProjectbtn = new javax.swing.JButton();
+        MainReqPrstbtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        CheckGradebtn = new javax.swing.JButton();
+        MainCheckGradebtn = new javax.swing.JButton();
+        MainStudenNameLbl = new javax.swing.JLabel();
+        MainSaveNLogoutBtn = new javax.swing.JButton();
 
         jLabel11.setText("SUBMIT PROJECT");
 
@@ -90,276 +120,402 @@ public class StudentMain extends javax.swing.JFrame {
 
         jLabel4.setText("Assessment Type");
 
-        jLabel5.setText("Supervisor ID");
-
-        jLabel9.setText("Second Marker ID");
-
         jLabel6.setText("Moodle Link");
 
         jLabel7.setText("Submit Date");
 
-        ClearButton.setText("Clear");
-        ClearButton.addActionListener(new java.awt.event.ActionListener() {
+        SubCancelBtn.setText("Cancel");
+        SubCancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClearButtonActionPerformed(evt);
+                SubCancelBtnActionPerformed(evt);
             }
         });
 
-        AddButton.setText("Add Submission");
-        AddButton.addActionListener(new java.awt.event.ActionListener() {
+        SubAddSubmissionBtn.setText("Add Submission");
+        SubAddSubmissionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddButtonActionPerformed(evt);
+                SubAddSubmissionBtnActionPerformed(evt);
             }
         });
+
+        SubProjectIDLbl.setText("jLabel2");
+
+        SubAssTypeLbl.setText("jLabel21");
+
+        SubDateLbl.setText("jLabel2");
 
         javax.swing.GroupLayout SubmitProjectLayout = new javax.swing.GroupLayout(SubmitProject.getContentPane());
         SubmitProject.getContentPane().setLayout(SubmitProjectLayout);
         SubmitProjectLayout.setHorizontalGroup(
             SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubmitProjectLayout.createSequentialGroup()
-                .addGap(132, 132, 132)
                 .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel6)
                     .addGroup(SubmitProjectLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
+                        .addGap(58, 58, 58)
                         .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
                             .addGroup(SubmitProjectLayout.createSequentialGroup()
                                 .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel3))
                                 .addGap(55, 55, 55)
-                                .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(SMoodleLinktxt)
-                                    .addComponent(SProjectIDtxt)
-                                    .addComponent(SSupervisorIDtxt)
-                                    .addComponent(SSecondtxt)
-                                    .addComponent(STypetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(SubProjectIDLbl)
+                                    .addComponent(SubAssTypeLbl)))
+                            .addComponent(jLabel6)
+                            .addGroup(SubmitProjectLayout.createSequentialGroup()
+                                .addComponent(SubAddSubmissionBtn)
+                                .addGap(39, 39, 39)
+                                .addComponent(SubCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(SubmitProjectLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(81, 81, 81)
+                                .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(SubDateLbl)
+                                    .addComponent(SubLinkField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(SubmitProjectLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(AddButton))
-                    .addComponent(jLabel7)
-                    .addGroup(SubmitProjectLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                        .addGap(134, 134, 134)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         SubmitProjectLayout.setVerticalGroup(
             SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubmitProjectLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel11)
-                .addGap(26, 26, 26)
+                .addGap(29, 29, 29)
                 .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(SProjectIDtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SubProjectIDLbl))
                 .addGap(18, 18, 18)
                 .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(STypetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(SSupervisorIDtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(SSecondtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SubAssTypeLbl))
                 .addGap(18, 18, 18)
                 .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(SMoodleLinktxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SubLinkField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7)
+                .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(SubDateLbl))
                 .addGap(42, 42, 42)
                 .addGroup(SubmitProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                    .addComponent(SubCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SubAddSubmissionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
-
-        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
-
-        jLabel8.setText("Supervisor ID");
 
         jLabel12.setText("REQUEST PRESENTATION");
 
-        Requestbtn.setText("Request");
-        Requestbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RequestbtnActionPerformed(evt);
-            }
-        });
-
         jLabel10.setText("Project ID");
+
+        ReqProjectIDLbl.setText("jLabel2");
+
+        ReqAseTypeLbl.setText("jLabel5");
 
         jLabel13.setText("Assessment Type");
 
-        jLabel14.setText("Second Marker ID");
-
         jLabel15.setText("Request Presentation Date");
 
-        RBackbtn.setText("Back");
-        RBackbtn.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Day");
+
+        jLabel5.setText("Month");
+
+        jLabel8.setText("Year");
+
+        ReqCancelbtn.setText("Cancel");
+        ReqCancelbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBackbtnActionPerformed(evt);
+                ReqCancelbtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(RBackbtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Requestbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel13)
-                                            .addComponent(jLabel10))
-                                        .addGap(55, 55, 55)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(RProjectIDtxt)
-                                            .addComponent(RSupervisorIDtxt)
-                                            .addComponent(RSecondtxt)
-                                            .addComponent(RTypetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(jLabel15))
-                        .addContainerGap(57, Short.MAX_VALUE))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel12)
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(RProjectIDtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(RTypetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(RSupervisorIDtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(RSecondtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel15)
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Requestbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RBackbtn))
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
+        ReqRequestbtn.setText("Request");
+        ReqRequestbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReqRequestbtnActionPerformed(evt);
+            }
+        });
+
+        ReqDayField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReqDayFieldActionPerformed(evt);
+            }
+        });
+
+        ReqMonthField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReqMonthFieldActionPerformed(evt);
+            }
+        });
+
+        ReqYearField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReqYearFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout RequestPresentationLayout = new javax.swing.GroupLayout(RequestPresentation.getContentPane());
         RequestPresentation.getContentPane().setLayout(RequestPresentationLayout);
         RequestPresentationLayout.setHorizontalGroup(
             RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(RequestPresentationLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RequestPresentationLayout.createSequentialGroup()
+                        .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(ReqDayField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(RequestPresentationLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel5))
+                            .addGroup(RequestPresentationLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(ReqMonthField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(RequestPresentationLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel8))
+                            .addGroup(RequestPresentationLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(ReqYearField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RequestPresentationLayout.createSequentialGroup()
+                        .addGap(0, 22, Short.MAX_VALUE)
+                        .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(RequestPresentationLayout.createSequentialGroup()
+                                .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel10))
+                                .addGap(55, 55, 55)
+                                .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ReqProjectIDLbl)
+                                    .addComponent(ReqAseTypeLbl))
+                                .addGap(53, 53, 53))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RequestPresentationLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(29, 29, 29))
+                    .addGroup(RequestPresentationLayout.createSequentialGroup()
+                        .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addGroup(RequestPresentationLayout.createSequentialGroup()
+                                .addComponent(ReqRequestbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)
+                                .addComponent(ReqCancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         RequestPresentationLayout.setVerticalGroup(
             RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(RequestPresentationLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel12)
+                .addGap(36, 36, 36)
+                .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(ReqProjectIDLbl))
+                .addGap(24, 24, 24)
+                .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(ReqAseTypeLbl))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel15)
+                .addGap(24, 24, 24)
+                .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8))
+                .addGap(7, 7, 7)
+                .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ReqDayField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ReqMonthField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ReqYearField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGroup(RequestPresentationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ReqRequestbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ReqCancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49))
         );
 
-        GBackbtn.setText("Back");
-        GBackbtn.addActionListener(new java.awt.event.ActionListener() {
+        GradeBackbtn.setText("Back");
+        GradeBackbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GBackbtnActionPerformed(evt);
+                GradeBackbtnActionPerformed(evt);
             }
         });
 
         jLabel16.setText("Check Grade");
 
-        jLabel17.setText("Status");
+        jLabel17.setText("Grade");
 
-        jLabel18.setText("Grade");
+        jLabel18.setText("Final Grade");
 
         jLabel19.setText("Submission Type");
 
         jLabel20.setText("Project ID");
+
+        GradeProjectIDField.setEditable(false);
+
+        GradeAssTypeField.setEditable(false);
+
+        GradeSuperGradeField.setEditable(false);
+
+        GradeFinalGradeField.setEditable(false);
+
+        jLabel9.setText("Supervisor");
+
+        jLabel14.setText("Evaluator ID");
+
+        GradeSuperIDLbl.setText("Id");
+
+        jLabel23.setText("Comment");
+
+        GradeSuperCmtField.setEditable(false);
+
+        jLabel24.setText("Second Marker");
+
+        jLabel25.setText("Grade");
+
+        GradeSecondGradeField.setEditable(false);
+
+        GradeSecIDLbl.setText("Id");
+
+        jLabel27.setText("Comment");
+
+        GradeSecondCmtField.setEditable(false);
+
+        jLabel28.setText("Evaluator ID");
 
         javax.swing.GroupLayout CheckGradeLayout = new javax.swing.GroupLayout(CheckGrade.getContentPane());
         CheckGrade.getContentPane().setLayout(CheckGradeLayout);
         CheckGradeLayout.setHorizontalGroup(
             CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CheckGradeLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
                 .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CheckGradeLayout.createSequentialGroup()
-                            .addComponent(jLabel20)
-                            .addGap(104, 104, 104))
-                        .addGroup(CheckGradeLayout.createSequentialGroup()
-                            .addComponent(jLabel19)
-                            .addGap(66, 66, 66)))
                     .addGroup(CheckGradeLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel9))
+                    .addGroup(CheckGradeLayout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel18)
+                        .addGap(86, 86, 86)
+                        .addComponent(GradeFinalGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CheckGradeLayout.createSequentialGroup()
+                        .addGap(112, 112, 112)
                         .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel17)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CheckGradeLayout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(104, 104, 104))
                             .addGroup(CheckGradeLayout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel16)
-                                    .addComponent(GBackbtn))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(GTypetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(GProjecttxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(GStatustxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(GCheckGradetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44))
+                                .addComponent(jLabel19)
+                                .addGap(66, 66, 66)))
+                        .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(GradeAssTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(GradeProjectIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(CheckGradeLayout.createSequentialGroup()
+                                    .addGap(23, 23, 23)
+                                    .addComponent(jLabel24))
+                                .addGroup(CheckGradeLayout.createSequentialGroup()
+                                    .addComponent(jLabel28)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(GradeSecIDLbl))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CheckGradeLayout.createSequentialGroup()
+                                    .addComponent(jLabel25)
+                                    .addGap(44, 44, 44)
+                                    .addComponent(GradeSecondGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(CheckGradeLayout.createSequentialGroup()
+                                .addComponent(jLabel27)
+                                .addGap(18, 18, 18)
+                                .addComponent(GradeSecondCmtField, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(CheckGradeLayout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(jLabel16))
+                    .addGroup(CheckGradeLayout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(GradeBackbtn))
+                    .addGroup(CheckGradeLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(CheckGradeLayout.createSequentialGroup()
+                                    .addComponent(jLabel14)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(GradeSuperIDLbl))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CheckGradeLayout.createSequentialGroup()
+                                    .addComponent(jLabel17)
+                                    .addGap(44, 44, 44)
+                                    .addComponent(GradeSuperGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(CheckGradeLayout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addGap(18, 18, 18)
+                                .addComponent(GradeSuperCmtField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         CheckGradeLayout.setVerticalGroup(
             CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CheckGradeLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel16)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(GProjecttxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(GradeProjectIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(GTypetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(GradeAssTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
                 .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(GStatustxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel24))
                 .addGap(18, 18, 18)
+                .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CheckGradeLayout.createSequentialGroup()
+                        .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(GradeSuperIDLbl))
+                        .addGap(15, 15, 15)
+                        .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CheckGradeLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel23)
+                                    .addComponent(GradeSuperCmtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(GradeSuperGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(CheckGradeLayout.createSequentialGroup()
+                        .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28)
+                            .addComponent(GradeSecIDLbl))
+                        .addGap(15, 15, 15)
+                        .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CheckGradeLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel25)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel27)
+                                    .addComponent(GradeSecondCmtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(GradeSecondGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(CheckGradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(GCheckGradetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(GBackbtn)
-                .addGap(63, 63, 63))
+                    .addComponent(GradeFinalGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(GradeBackbtn)
+                .addGap(18, 18, 18))
         );
+
+        jLabel21.setText("jLabel21");
+
+        SearchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchFieldActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -368,51 +524,66 @@ public class StudentMain extends javax.swing.JFrame {
             }
         });
 
-        Table1.setModel(new javax.swing.table.DefaultTableModel(
+        MainProjectsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Project ID", "Assessment Type", "Supervisor ID", "Second Marker ID", "Submitted Date", "Requested Presentation Date", "Request Status", "Status", "Grade", "Link"
+                "Project ID", "Assessment Type", "Supervisor ID", "Second Marker ID", "Submitted Date", "Requested Presentation Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, false, false, false, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        Table1.addMouseListener(new java.awt.event.MouseAdapter() {
+        MainProjectsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Table1MouseClicked(evt);
+                MainProjectsTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(Table1);
+        jScrollPane1.setViewportView(MainProjectsTable);
+        if (MainProjectsTable.getColumnModel().getColumnCount() > 0) {
+            MainProjectsTable.getColumnModel().getColumn(0).setResizable(false);
+            MainProjectsTable.getColumnModel().getColumn(1).setResizable(false);
+            MainProjectsTable.getColumnModel().getColumn(2).setResizable(false);
+            MainProjectsTable.getColumnModel().getColumn(3).setResizable(false);
+            MainProjectsTable.getColumnModel().getColumn(4).setResizable(false);
+            MainProjectsTable.getColumnModel().getColumn(5).setResizable(false);
+        }
 
-        SubmitProjectbtn.setText("Submit Project");
-        SubmitProjectbtn.addActionListener(new java.awt.event.ActionListener() {
+        MainSubmitProjectbtn.setText("Submit Project");
+        MainSubmitProjectbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitProjectbtnActionPerformed(evt);
+                MainSubmitProjectbtnActionPerformed(evt);
             }
         });
 
-        RequestPresentationbtn.setText("Request Presentation");
-        RequestPresentationbtn.addActionListener(new java.awt.event.ActionListener() {
+        MainReqPrstbtn.setText("Request Presentation");
+        MainReqPrstbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RequestPresentationbtnActionPerformed(evt);
+                MainReqPrstbtnActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Welcome");
 
-        jLabel2.setText("Choose Below Options");
-
-        CheckGradebtn.setText("Check Grade");
-        CheckGradebtn.addActionListener(new java.awt.event.ActionListener() {
+        MainCheckGradebtn.setText("Check Grade");
+        MainCheckGradebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckGradebtnActionPerformed(evt);
+                MainCheckGradebtnActionPerformed(evt);
+            }
+        });
+
+        MainStudenNameLbl.setText("jLabel2");
+
+        MainSaveNLogoutBtn.setText("Save changes and logout");
+        MainSaveNLogoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MainSaveNLogoutBtnActionPerformed(evt);
             }
         });
 
@@ -421,225 +592,211 @@ public class StudentMain extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(350, 350, 350)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(SubmitProjectbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(RequestPresentationbtn)
+                                .addComponent(MainSubmitProjectbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(MainReqPrstbtn)
                                 .addGap(40, 40, 40)
-                                .addComponent(CheckGradebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                                .addComponent(MainCheckGradebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(15, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(MainStudenNameLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(MainSaveNLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SubmitProjectbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RequestPresentationbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CheckGradebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(MainStudenNameLbl))
+                    .addComponent(MainSaveNLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MainSubmitProjectbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MainReqPrstbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MainCheckGradebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Table1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table1MouseClicked
+    private void MainProjectsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainProjectsTableMouseClicked
           
         
-    }//GEN-LAST:event_Table1MouseClicked
+    }//GEN-LAST:event_MainProjectsTableMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        try {
-        FileReader file = new FileReader("D:\\Year 2\\Sem 1\\JAVA\\Assignment\\Assignment\\file.txt");
-        BufferedReader reader = new BufferedReader(file);
 
-        DefaultTableModel model = (DefaultTableModel) Table1.getModel();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] values = line.split("/");
-            model.addRow(new Object[]{values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7], values[8], values[9]});
-        }
-
-        reader.close();
-        file.close();
-        
-        Table1.getColumnModel().getColumn(4).setMinWidth(0);
-        Table1.getColumnModel().getColumn(4).setMaxWidth(0);
-        Table1.getColumnModel().getColumn(7).setMinWidth(0);
-        Table1.getColumnModel().getColumn(7).setMaxWidth(0);
-        Table1.getColumnModel().getColumn(8).setMinWidth(0);
-        Table1.getColumnModel().getColumn(8).setMaxWidth(0);
-        Table1.getColumnModel().getColumn(9).setMinWidth(0);
-        Table1.getColumnModel().getColumn(9).setMaxWidth(0);
-       
-    } catch (Exception ex) {
-        ex.printStackTrace();
-    }
     }//GEN-LAST:event_formWindowOpened
 
-    private void SubmitProjectbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitProjectbtnActionPerformed
-        SubmitProject project = new SubmitProject();
-        project.setVisible(true);
-        
-        String projectid = "2";
-        project.SProjectIDtxt.setText(projectid);
-        String submissiontype = "FYP";
-        project.STypetxt.setText(submissiontype);
-        String supervisorid = "2";
-        project.SSupervisorIDtxt.setText(supervisorid);
-        String secondmarker = "2";
-        project.SSecondtxt.setText(secondmarker);
-        
-    }//GEN-LAST:event_SubmitProjectbtnActionPerformed
-
-    private void RequestPresentationbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestPresentationbtnActionPerformed
-        TableModel model1 = Table1.getModel();
-        int row = Table1.getSelectedRow();
-        if(row != -1) {
-            RequestPresentation Request = new RequestPresentation();
-
-            String projectid = model1.getValueAt(row,0).toString();
-            String assessmentType = model1.getValueAt(row,1).toString();
-            String supervisorID = model1.getValueAt(row,2).toString();
-            String secondMarkerID = model1.getValueAt(row,3).toString();
-
-            Request.RProjectIDtxt.setText(projectid);
-            Request.RTypetxt.setText(assessmentType);
-            Request.RSupervisorIDtxt.setText(supervisorID);
-            Request.RSecondtxt.setText(secondMarkerID);
-
-            Request.setVisible(true);
-            Request.pack();
-            Request.setLocationRelativeTo(null);
-            Request.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Please select a row from the table.");
+    private void MainSubmitProjectbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainSubmitProjectbtnActionPerformed
+        int selectedProject = MainProjectsTable.getSelectedRow();
+        if (selectedProject != -1){
+            SubProjectIDLbl.setText(AssignedProjects.get(selectedProject).getProjectID());
+            SubAssTypeLbl.setText(AssignedProjects.get(selectedProject).getAssessmentType());
+            SubDateLbl.setText(String.valueOf(java.time.LocalDate.now()));
+            SubmitProject.setVisible(true);
+            SubmitProject.setSize(360,430);
         }
+        else{
+            JOptionPane.showMessageDialog(null,"Choose a project first");
+        }
+      
+    }//GEN-LAST:event_MainSubmitProjectbtnActionPerformed
+
+    private void MainReqPrstbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainReqPrstbtnActionPerformed
+        int selectedProject = MainProjectsTable.getSelectedRow();
+        if (selectedProject != -1){
+            ReqProjectIDLbl.setText(AssignedProjects.get(selectedProject).getProjectID());
+            ReqAseTypeLbl.setText(AssignedProjects.get(selectedProject).getAssessmentType());
+            RequestPresentation.setVisible(true);
+            RequestPresentation.setSize(360,380);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Choose a project first");
+        }
+       
+    }//GEN-LAST:event_MainReqPrstbtnActionPerformed
+
+    private void MainCheckGradebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainCheckGradebtnActionPerformed
+        GradeSuperGradeField.setText("");
+        GradeSuperCmtField.setText("");
+        GradeSecondGradeField.setText("");
+        GradeSecondCmtField.setText("");
+        GradeFinalGradeField.setText("");
         
-    }//GEN-LAST:event_RequestPresentationbtnActionPerformed
-
-    private void CheckGradebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckGradebtnActionPerformed
-        TableModel model1 = Table1.getModel();
-        int row = Table1.getSelectedRow();
-        Grade grade = new Grade();
-
-        if(row != -1) { 
-            String projectid = model1.getValueAt(row,0).toString();
-            String submissiontype = model1.getValueAt(row,1).toString();
-            String status = model1.getValueAt(row,7).toString();
-            String gradestr = model1.getValueAt(row,8).toString();
-
-            grade.GProjecttxt.setText(projectid);
-            grade.GTypetxt.setText(submissiontype);
-            grade.GStatustxt.setText(status); 
-            grade.GCheckGradetxt.setText(gradestr); 
+        int selectedProject = MainProjectsTable.getSelectedRow();
+        if (selectedProject != -1){
+            GradeProjectIDField.setText(AssignedProjects.get(selectedProject).getProjectID());
+            GradeAssTypeField.setText(AssignedProjects.get(selectedProject).getAssessmentType());
+            GradeSuperIDLbl.setText(AssignedProjects.get(selectedProject).getSupervisorID());
+            GradeSecIDLbl.setText(AssignedProjects.get(selectedProject).getSecondMarkerID());
             
-            grade.setVisible(true);
-            grade.pack();
-            grade.setLocationRelativeTo(null);
-            grade.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        }
-    }//GEN-LAST:event_CheckGradebtnActionPerformed
+            for (EvaluationResult evaluation: evaluationResults){
+                if (evaluation.getProjectID().equals(GradeProjectIDField.getText())){
+                    // check if supervisor evaluated
+                    if (evaluation.getEvaluatorID().equals(GradeSuperIDLbl.getText())){
+                        GradeSuperGradeField.setText(evaluation.getGrade());
+                        GradeSuperCmtField.setText(evaluation.getComment());
+                    }
 
-    private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
-
-    }//GEN-LAST:event_ClearButtonActionPerformed
-
-    private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
-
-        String projectid = "2";
-        String submissiontype = "FYP";
-        String supervisorid = "2";
-        String secondmarker = "2";
-        String requestpresentationdate = "";
-        String requeststatus = "";
-        String status = "Ongoing";
-        String Grade = "";
-
-        String link = SMoodleLinktxt.getText();
-        SimpleDateFormat dFormat = new SimpleDateFormat("DD-MM-YYYY");
-        String submitteddate = dFormat.format(SSubmitDate.getDate());
-
-        if (link.isEmpty()|| submitteddate.isEmpty()) {
-            JOptionPane.showMessageDialog(SubmitProject.this,
-                "Please enter all the fields",
-                "Try Again",
-                JOptionPane.ERROR_MESSAGE);
-        } else {
-            // Create a string to save to the file
-            String dataToSave = projectid + "/" + submissiontype + "/" + supervisorid + "/" + secondmarker + "/" + submitteddate + "/" + requestpresentationdate + "/" + requeststatus + "/" + status + "/" + Grade + "/" + link;
-
-            // Save the data to a file
-            try {
-                FileWriter writer = new FileWriter("D:\\Year 2\\Sem 1\\JAVA\\Assignment\\Assignment\\file.txt", true);
-                writer.write(dataToSave + System.lineSeparator());
-                writer.close();
-                JOptionPane.showMessageDialog(SubmitProject.this,
-                    "Submission added successfully",
-                    "Success",
-                    JOptionPane.INFORMATION_MESSAGE);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(SubmitProject.this,
-                    "Error adding submission",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
+                    // check if secondMarker evaluated
+                    if (evaluation.getEvaluatorID().equals(GradeSecIDLbl.getText())){
+                        GradeSecondGradeField.setText(evaluation.getGrade());
+                        GradeSecondCmtField.setText(evaluation.getComment());
+                    }
+                } 
             }
-
-            dispose();
+            
+            // Try to calculate final grade if two grade was given
+            if(!"".equals(GradeSuperGradeField.getText()) && !"".equals(GradeSecondGradeField.getText())){
+                double firstGrade = Double.parseDouble(GradeSuperGradeField.getText());
+                double secondGrade = Double.parseDouble(GradeSecondGradeField.getText());
+                double finalGrade = (firstGrade + secondGrade)/2;
+                GradeFinalGradeField.setText(String.valueOf(finalGrade));
+            }
+        CheckGrade.setVisible(true);
+        CheckGrade.setSize(448,425);
         }
-
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(null);
-    }//GEN-LAST:event_AddButtonActionPerformed
-
-    private void RequestbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestbtnActionPerformed
-
-        //not done yet
-        //i plan to out sleect row then can directly replace the date with the date i wish
-        SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy"); // 'yyyy' instead of 'YYYY'
-        Date date = RequestPresentationDate.getDate();
-        if(date == null) {
-            JOptionPane.showMessageDialog(this, "Please enter the request presentation date.");
-            return;
+        else{
+            JOptionPane.showMessageDialog(null,"Choose a project first");
         }
-        String submitteddate = dFormat.format(date);
+    }//GEN-LAST:event_MainCheckGradebtnActionPerformed
 
-        TableModel model = StudentMain.Table1.getModel();
-        int row = StudentMain.Table1.getSelectedRow();
-        model.setValueAt(submitteddate, row, 5);
+    private void SubCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubCancelBtnActionPerformed
+        SubmitProject.setVisible(false);
+    }//GEN-LAST:event_SubCancelBtnActionPerformed
 
-        this.dispose();;
-    }//GEN-LAST:event_RequestbtnActionPerformed
+    private void SubAddSubmissionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubAddSubmissionBtnActionPerformed
+        // update project in array
+        for (Project project:AssignedProjects){
+            if(project.getProjectID().equals(SubProjectIDLbl.getText())){
+                project.setSubmissionLink(SubLinkField.getText());
+                project.setSubmissionDate(SubDateLbl.getText());
+                project.setReportStatus("Submitted");
+            }
+        }
+        ReinitializeTable();
+        SubmitProject.setVisible(false);
+     
+    }//GEN-LAST:event_SubAddSubmissionBtnActionPerformed
 
-    private void RBackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBackbtnActionPerformed
+    private void GradeBackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GradeBackbtnActionPerformed
+        CheckGrade.setVisible(false);
+    }//GEN-LAST:event_GradeBackbtnActionPerformed
+
+    private void ReqCancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReqCancelbtnActionPerformed
+        RequestPresentation.setVisible(false);
+    }//GEN-LAST:event_ReqCancelbtnActionPerformed
+
+    private void ReqRequestbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReqRequestbtnActionPerformed
+        // update project in array
+        for (Project project:AssignedProjects){
+            if(project.getProjectID().equals(ReqProjectIDLbl.getText())){
+                // Validate date input, need to use try catch, but I dont have time
+                String date = ReqYearField.getText().trim()+ "-" +ReqMonthField.getText().trim() + "-" + ReqDayField.getText().trim();
+                project.setPresentationDate(date);
+            }
+        }
+        ReinitializeTable();
+        RequestPresentation.setVisible(false);
+    }//GEN-LAST:event_ReqRequestbtnActionPerformed
+
+    private void SearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchFieldActionPerformed
+
+    private void ReqDayFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReqDayFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReqDayFieldActionPerformed
+
+    private void ReqMonthFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReqMonthFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReqMonthFieldActionPerformed
+
+    private void ReqYearFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReqYearFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReqYearFieldActionPerformed
+
+    private void MainSaveNLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainSaveNLogoutBtnActionPerformed
+        // Update main project array 
+        for (int i = 0; i < projects.size(); i ++){
+            for(int j = 0; j < AssignedProjects.size(); j ++)
+                if (projects.get(i).getProjectID().equals(AssignedProjects.get(j).getProjectID())){
+                    projects.set(i, AssignedProjects.get(j));
+                }
+        }
+        
+        FileIO.ExportProjects(projects);
         this.dispose();
-    }//GEN-LAST:event_RBackbtnActionPerformed
+        new Login().setVisible(true);
+    }//GEN-LAST:event_MainSaveNLogoutBtnActionPerformed
 
-    private void GBackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GBackbtnActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_GBackbtnActionPerformed
-
+    public void ReinitializeTable(){
+        
+        // Initialize table
+        DefaultTableModel model = (DefaultTableModel)MainProjectsTable.getModel();
+        model.setRowCount(0);
+        for(Project AssignedProject:AssignedProjects){
+            String [] tableDataRow = {AssignedProject.getProjectID(), AssignedProject.getAssessmentType(), AssignedProject.getSupervisorID(), AssignedProject.getSecondMarkerID(), AssignedProject.getSubmissionDate(), AssignedProject.getPresentationDate()};
+            model.addRow(tableDataRow);
+        }     
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -671,42 +828,58 @@ public class StudentMain extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentMain().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog CheckGrade;
-    private javax.swing.JButton CheckGradebtn;
-    private javax.swing.JButton GBackbtn;
-    public javax.swing.JTextField GCheckGradetxt;
-    public javax.swing.JTextField GProjecttxt;
-    public javax.swing.JTextField GStatustxt;
-    public javax.swing.JTextField GTypetxt;
-    private javax.swing.JButton RBackbtn;
-    public javax.swing.JTextField RProjectIDtxt;
-    public javax.swing.JTextField RSecondtxt;
-    public javax.swing.JTextField RSupervisorIDtxt;
-    public javax.swing.JTextField RTypetxt;
+    public javax.swing.JTextField GradeAssTypeField;
+    private javax.swing.JButton GradeBackbtn;
+    public javax.swing.JTextField GradeFinalGradeField;
+    public javax.swing.JTextField GradeProjectIDField;
+    private javax.swing.JLabel GradeSecIDLbl;
+    private javax.swing.JTextField GradeSecondCmtField;
+    public javax.swing.JTextField GradeSecondGradeField;
+    private javax.swing.JTextField GradeSuperCmtField;
+    public javax.swing.JTextField GradeSuperGradeField;
+    private javax.swing.JLabel GradeSuperIDLbl;
+    private javax.swing.JButton MainCheckGradebtn;
+    private javax.swing.JTable MainProjectsTable;
+    private javax.swing.JButton MainReqPrstbtn;
+    private javax.swing.JButton MainSaveNLogoutBtn;
+    private javax.swing.JLabel MainStudenNameLbl;
+    private javax.swing.JButton MainSubmitProjectbtn;
+    private javax.swing.JLabel ReqAseTypeLbl;
+    private javax.swing.JButton ReqCancelbtn;
+    private javax.swing.JTextField ReqDayField;
+    private javax.swing.JTextField ReqMonthField;
+    private javax.swing.JLabel ReqProjectIDLbl;
+    private javax.swing.JTextField ReqYearField;
     private javax.swing.JDialog RequestPresentation;
-    private javax.swing.JButton RequestPresentationbtn;
-    private javax.swing.JTextField SMoodleLinktxt;
-    public javax.swing.JTextField SProjectIDtxt;
-    public javax.swing.JTextField SSecondtxt;
-    public javax.swing.JTextField SSupervisorIDtxt;
-    public javax.swing.JTextField STypetxt;
+    private javax.swing.JTextField SearchField;
+    private javax.swing.JLabel SubAssTypeLbl;
+    private javax.swing.JLabel SubDateLbl;
+    private javax.swing.JTextField SubLinkField;
+    private javax.swing.JLabel SubProjectIDLbl;
     private javax.swing.JDialog SubmitProject;
-    private javax.swing.JButton SubmitProjectbtn;
-    private javax.swing.JTable Table1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

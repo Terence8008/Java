@@ -490,6 +490,12 @@ public class AdminMain extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
+        SearchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchFieldActionPerformed(evt);
+            }
+        });
+
         SearchBtn.setText("Search");
         SearchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -968,6 +974,10 @@ public class AdminMain extends javax.swing.JFrame {
     private void EditLecPassFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditLecPassFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EditLecPassFieldActionPerformed
+
+    private void SearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchFieldActionPerformed
 
     /**
      * @param args the command line arguments

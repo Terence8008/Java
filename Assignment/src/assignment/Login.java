@@ -129,8 +129,9 @@ public class Login extends javax.swing.JFrame {
         for (int i = 0; i < students.size(); i ++){
             for(int j = 0; j < projects.size(); j ++)
                 if (students.get(i).getID().equals(projects.get(j).getStudentID())){
-                    students.get(i).setProject(projects.get(j));
+                    students.get(i).addProject(projects.get(j));
                     projects.get(j).setStudent(students.get(i));
+                    
                 }
         }
     }
@@ -179,7 +180,8 @@ public class Login extends javax.swing.JFrame {
             if(username.equals(student.getName())){
                 // If found valide password
                 if(password.equals(student.getPassword())){
-                    JOptionPane.showMessageDialog(null,"Login as Lecturer");
+                    JOptionPane.showMessageDialog(null,"Login as Student");
+                    new StudentMain(student, students, projects , evaluationResults).setVisible(true);
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"Wrong password");

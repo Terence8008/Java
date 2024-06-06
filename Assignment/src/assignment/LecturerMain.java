@@ -492,26 +492,26 @@ public class LecturerMain extends javax.swing.JFrame {
     
     private void ReportListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportListBtnActionPerformed
         int selectedIndex = jTable1.getSelectedRow();
-        if (selectedIndex != -1){
-            // Check if student have been evaluated
-            for (int i =0; i < evaluationResults.size(); i++){
-                if(responsibleStudent.get(selectedIndex).getProject().getProjectID().equals(evaluationResults.get(i).getProjectID()) && evaluationResults.get(i).getEvaluatorID().equals("LR02")){  // check for evaluation list 
-                    JOptionPane.showMessageDialog(null, "Simple Information Message");
-                }
-                else{
-                    Student selectedStudent = responsibleStudent.get(selectedIndex);
-                    ReportDialog.setVisible(true);
-                    ReportDialog.setSize(600,400);
-                    StudentNameLabel.setText(selectedStudent.getName());
-                    StudentIDLabel.setText(selectedStudent.getID());
-                    ProjectIDLabel.setText(selectedStudent.getProject().getProjectID());
-                    AssessmentLabel.setText(selectedStudent.getProject().getAssessmentType());
-                    SubmissionDateLabel.setText(selectedStudent.getProject().getSubmissionDate());
-                    SubmissionLinkLabel.setText(selectedStudent.getProject().getSubmissionLink());
-                    EvaluationIDLabel.setText(selectedStudent.getID()+"R");
-                }               
-            }
-        }
+//        if (selectedIndex != -1){
+//            // Check if student have been evaluated
+//            for (int i =0; i < evaluationResults.size(); i++){
+//                if(responsibleStudent.get(selectedIndex).getProjects().getProjectID().equals(evaluationResults.get(i).getProjectID()) && evaluationResults.get(i).getEvaluatorID().equals("LR02")){  // check for evaluation list 
+//                    JOptionPane.showMessageDialog(null, "Simple Information Message");
+//                }
+//                else{
+//                    Student selectedStudent = responsibleStudent.get(selectedIndex);
+//                    ReportDialog.setVisible(true);
+//                    ReportDialog.setSize(600,400);
+//                    StudentNameLabel.setText(selectedStudent.getName());
+//                    StudentIDLabel.setText(selectedStudent.getID());
+//                    ProjectIDLabel.setText(selectedStudent.getProject().getProjectID());
+//                    AssessmentLabel.setText(selectedStudent.getProject().getAssessmentType());
+//                    SubmissionDateLabel.setText(selectedStudent.getProject().getSubmissionDate());
+//                    SubmissionLinkLabel.setText(selectedStudent.getProject().getSubmissionLink());
+//                    EvaluationIDLabel.setText(selectedStudent.getID()+"R");
+//                }               
+//            }
+//        }
        
     }//GEN-LAST:event_ReportListBtnActionPerformed
 
@@ -523,8 +523,8 @@ public class LecturerMain extends javax.swing.JFrame {
             PresentationDialog.setSize(600,400);
             PDialogNameLbl.setText(selectedStudent.getName());
             PDialogIDLbl.setText(selectedStudent.getID());
-            PDialogAssessmentTypeLbl.setText(selectedStudent.getProject().getAssessmentType());
-            PDialogPresentationDateLbl.setText(selectedStudent.getProject().getPresentationDate());
+//            PDialogAssessmentTypeLbl.setText(selectedStudent.getProject().getAssessmentType());
+//            PDialogPresentationDateLbl.setText(selectedStudent.getProject().getPresentationDate());
         }
     }//GEN-LAST:event_PresentationBtnActionPerformed
 
@@ -606,7 +606,7 @@ public class LecturerMain extends javax.swing.JFrame {
         for (int i = 0; i < students.size(); i ++){
             for(int j = 0; j < projects.size(); j ++)
                 if (students.get(i).getID().equals(projects.get(j).getStudentID())){
-                    students.get(i).setProject(projects.get(j));
+//                    students.get(i).setProject(projects.get(j));
                     projects.get(j).setStudent(students.get(i));
                 }
         }

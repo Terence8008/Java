@@ -29,7 +29,9 @@ public class ProjectManagerMain extends javax.swing.JFrame {
         initComponents();
         DefaultTableModel model = (DefaultTableModel)MainStdListTable.getModel();
         for (Student student: students){
-            String [] tableDataRow = {student.getID(), student.getName(), student.getProject().getAssessmentType(), student.getProject().getSupervisorID(), student.getProject().getSecondMarkerID()}; 
+            // get student lastest project
+            Project latestProject = student.getProjects().get(student.getProjects().size()-1);
+            String [] tableDataRow = {student.getID(), student.getName(), latestProject.getAssessmentType(), latestProject.getSupervisorID(), latestProject.getSecondMarkerID()}; 
             model.addRow(tableDataRow);
         }
     }

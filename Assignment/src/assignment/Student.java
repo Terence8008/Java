@@ -4,13 +4,15 @@
  */
 package assignment;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Terence
  */
 public class Student extends User{
     private String intake;
-    private Project project;
+    ArrayList<Project> projects = new ArrayList<>();
     
     public Student(String id, String name, String email, String password, String intake) {
         super(id, name, email, password);
@@ -22,8 +24,8 @@ public class Student extends User{
         this.intake = intake;
     }
     
-    public void setProject(Project project){
-        this.project = project;
+    public void addProject(Project project){
+        this.projects.add(project);
     }
 
     //Getter 
@@ -31,8 +33,8 @@ public class Student extends User{
         return intake;
     }
     
-    public Project getProject(){
-        return project;
+    public ArrayList<Project> getProjects(){
+        return projects;
     }
     
 }

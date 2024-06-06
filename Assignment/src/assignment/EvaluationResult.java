@@ -13,6 +13,7 @@ public class EvaluationResult {
     
     public EvaluationResult(String evaluationID,String projectID,String evaluatorID, String grade, String comment ){
         this.evaluationID = evaluationID;
+        this.evaluatorID = evaluatorID;
         this.projectID = projectID;
         this.grade = grade;
         this.comment = comment;
@@ -27,7 +28,7 @@ public class EvaluationResult {
         this.projectID = projectID;
     }
     
-    public void setEvaluatorID(String EvaluatorID){
+    public void setEvaluatorID(String evaluatorID){
         this.evaluationID = evaluatorID;
     }
     
