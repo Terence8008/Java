@@ -37,4 +37,9 @@ public class Student extends User{
         return projects;
     }
     
+    // others
+    public void clearProjects(){
+        this.projects.clear();
+    }
+    
 }

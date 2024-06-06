@@ -125,27 +125,4 @@ public class Project {
         this.evalutaionResult = evaluationResult;
     }
     
-    //method
-    public ArrayList<Project> initialize(){
-        String projectFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Projects.txt";
-        File Pfile = new File(projectFilepath);
-        ArrayList<Project> projects = new ArrayList<>();
-        
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(Pfile));               
-            Object[] tableLines = br.lines().toArray();  // Create array of object to represent each lines        
-            
-            for (Object tableLine : tableLines) {
-                String line = tableLine.toString().trim(); // convert line object into String and trim it
-                String[] dataRow = line.split("/");
-                if (dataRow.length != 1) // Check if the datarow have been split using the delimiter
-                { 
-                    projects.add(new Project(dataRow[0],dataRow[1],dataRow[2],dataRow[3],dataRow[4],dataRow[5],dataRow[6],dataRow[7],dataRow[8])); //Create project object and add to project arraylist                              
-                }
-            }               
-        } catch (IOException ex) {
-            Logger.getLogger(LecturerMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return projects;
-    }
 }
