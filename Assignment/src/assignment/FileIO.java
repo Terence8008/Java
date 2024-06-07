@@ -174,7 +174,7 @@ public class FileIO {
             FileWriter fw = new FileWriter(Pfile);
             BufferedWriter bw = new BufferedWriter(fw); 
             
-            bw.write("Project ID, Student ID, Supervisor ID, SecondMarker ID, Assessment Type, Presentation Date, Submission Link, Submission Date, Report Status,");
+            bw.write("Project ID, Student ID, Supervisor ID, SecondMarker ID, Assessment Type, Presentation Date, Submission Link, Submission Date, Report Status, Presentation Status,");
             bw.newLine();
             
             // Check how many line to be writtern to text file
