@@ -16,7 +16,7 @@ public class LecturerMain extends javax.swing.JFrame {
     Lecturer loggedinLecterur;
     ArrayList<Student> students = new ArrayList<>(); // An arraylist to store all student object
     ArrayList<Project> projects = new ArrayList<>(); // An arraylust to store all project object
-    ArrayList<EvaluationResult> evaluationResults = new ArrayList<>();
+    ArrayList<EvaluationResult> evaluationResults = new ArrayList<>(); // An arraylist to store all evaluation result object
     
     /**
      * Creates new form MainMenu

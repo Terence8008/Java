@@ -8,8 +8,11 @@ package assignment;
  *
  * @author Terence
  */
-public class User {
-    private String id,name, email, password;
+
+// Create a abstract user class
+abstract class User {
+    public String id,name, email, password;
+    
     
     //Constructor
     public User(String id, String name, String email, String password){
@@ -19,37 +22,22 @@ public class User {
         this.password = password;
     }
     
-    //Getter
-    public String getID(){
-        return id;
-    }
+    // Creating abstract methods
+    // Getter
+    public abstract String getID();
     
-    public String getName(){
-        return name;
-    }
+    public abstract String getName();
     
-    public String getEmail(){
-        return email;
-    }
+    public abstract String getEmail();
     
-    public String getPassword(){
-        return password;
-    }
+    public abstract String getPassword();
     
     //Setter
-    public void setID(String id){
-        this.id = id;
-    }
+    public abstract void setID(String id);
     
-    public void setName(String name){
-        this.name = name;
-    }
+    public abstract void setName(String name);
     
-    public void setEmail(String email){
-        this.email = email;
-    }
+    public abstract void setEmail(String email);
     
-    public void setPassword(String password){
-        this.password = password;
-    } 
+    public abstract void setPassword(String password);
 }
