@@ -3,6 +3,13 @@ package assignment;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.io.BufferedWriter;
+
+
 
         
 /*
@@ -17,6 +24,8 @@ import javax.swing.table.DefaultTableModel;
 public class AdminMain extends javax.swing.JFrame {
     ArrayList<Lecturer> lecturers = new ArrayList<>();
     ArrayList<Student> students = new ArrayList<>();
+    String Lecturerfile = FileIO.lecturerFilepath;
+    String Studentfile =  FileIO.studentFilepath;
     
     /**
      * Creates new form AdminMain
@@ -84,21 +93,21 @@ public class AdminMain extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         RegStdEmailField = new javax.swing.JTextField();
-        DialogIntakeCodeLabel = new javax.swing.JLabel();
         RegStdCloseBtn = new javax.swing.JButton();
         RegStdPassField = new javax.swing.JTextField();
+        RegStdIntakeField = new javax.swing.JTextField();
         LecturersList = new javax.swing.JDialog();
-        SearchField = new javax.swing.JTextField();
-        SearchBtn = new javax.swing.JButton();
-        DeleteBtn = new javax.swing.JButton();
+        LecturerSearchField = new javax.swing.JTextField();
+        SearchLecBtn = new javax.swing.JButton();
+        DeleteLecturerBtn = new javax.swing.JButton();
         LecListEditBtn = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         LecturerListTable = new javax.swing.JTable();
         LecListCloseBtn = new javax.swing.JButton();
         StudentsList = new javax.swing.JDialog();
-        SearchField1 = new javax.swing.JTextField();
-        SearchBtn1 = new javax.swing.JButton();
+        StudentSearchField = new javax.swing.JTextField();
+        SearchStudBtn = new javax.swing.JButton();
         DeleteStdBtn = new javax.swing.JButton();
         StdListEditBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -140,14 +149,9 @@ public class AdminMain extends javax.swing.JFrame {
 
         jLabel8.setText("ID");
 
-        EditLecIDLbl.setText("jLabel9");
+        EditLecIDLbl.setText("ID");
 
         EditLecPassField.setToolTipText("");
-        EditLecPassField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditLecPassFieldActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout EditLecturerLayout = new javax.swing.GroupLayout(EditLecturer.getContentPane());
         EditLecturer.getContentPane().setLayout(EditLecturerLayout);
@@ -171,25 +175,25 @@ public class AdminMain extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(EditLecturerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(EditLecIDLbl)
                             .addComponent(EditLecNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                            .addComponent(EditLecEmailField))))
+                            .addComponent(EditLecEmailField)
+                            .addComponent(EditLecIDLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(161, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLecturerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(EditLecUpdateBtn)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addComponent(EditLecCancelBtn)
-                .addGap(109, 109, 109))
+                .addGap(159, 159, 159))
         );
         EditLecturerLayout.setVerticalGroup(
             EditLecturerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EditLecturerLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addGroup(EditLecturerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(EditLecturerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel8)
-                    .addComponent(EditLecIDLbl))
-                .addGap(18, 18, 18)
+                    .addComponent(EditLecIDLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(EditLecturerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(EditLecNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -201,15 +205,15 @@ public class AdminMain extends javax.swing.JFrame {
                 .addGroup(EditLecturerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EditLecPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(EditLecturerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EditLecPMCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
-                .addGap(43, 43, 43)
+                .addGap(12, 12, 12)
                 .addGroup(EditLecturerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EditLecUpdateBtn)
                     .addComponent(EditLecCancelBtn))
-                .addGap(134, 134, 134))
+                .addGap(159, 159, 159))
         );
 
         EditStdNameField.setActionCommand("<Not Set>");
@@ -303,8 +307,7 @@ public class AdminMain extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(EditStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(EditStdIntakeField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(EditStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(EditStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -423,8 +426,6 @@ public class AdminMain extends javax.swing.JFrame {
 
         RegStdEmailField.setToolTipText("");
 
-        DialogIntakeCodeLabel.setText("2406");
-
         RegStdCloseBtn.setText("Close");
         RegStdCloseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -433,6 +434,8 @@ public class AdminMain extends javax.swing.JFrame {
         });
 
         RegStdPassField.setToolTipText("");
+
+        RegStdIntakeField.setToolTipText("");
 
         javax.swing.GroupLayout RegisterStudentLayout = new javax.swing.GroupLayout(RegisterStudent.getContentPane());
         RegisterStudent.getContentPane().setLayout(RegisterStudentLayout);
@@ -444,8 +447,8 @@ public class AdminMain extends javax.swing.JFrame {
                     .addGroup(RegisterStudentLayout.createSequentialGroup()
                         .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(DialogIntakeCodeLabel)
-                        .addGap(145, 145, 145))
+                        .addComponent(RegStdIntakeField, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(RegisterStudentLayout.createSequentialGroup()
                         .addGroup(RegisterStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(RegStdBtn)
@@ -456,10 +459,12 @@ public class AdminMain extends javax.swing.JFrame {
                                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(RegisterStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(RegisterStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(RegStdNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                                        .addComponent(RegStdEmailField))
-                                    .addComponent(RegStdPassField, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))))
+                                    .addComponent(RegStdPassField)
+                                    .addGroup(RegisterStudentLayout.createSequentialGroup()
+                                        .addGroup(RegisterStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(RegStdNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(RegStdEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addComponent(RegStdCloseBtn)
                         .addGap(33, 33, 33))))
@@ -472,41 +477,35 @@ public class AdminMain extends javax.swing.JFrame {
                     .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(RegStdNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(RegisterStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(RegStdEmailField)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(RegisterStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RegStdEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(RegisterStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DialogIntakeCodeLabel))
+                    .addComponent(RegStdIntakeField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(RegisterStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RegStdPassField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addGroup(RegisterStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RegStdBtn)
                     .addComponent(RegStdCloseBtn))
                 .addGap(24, 24, 24))
         );
 
-        SearchField.addActionListener(new java.awt.event.ActionListener() {
+        SearchLecBtn.setText("Search");
+        SearchLecBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchFieldActionPerformed(evt);
+                SearchLecBtnActionPerformed(evt);
             }
         });
 
-        SearchBtn.setText("Search");
-        SearchBtn.addActionListener(new java.awt.event.ActionListener() {
+        DeleteLecturerBtn.setText("Delete");
+        DeleteLecturerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchBtnActionPerformed(evt);
-            }
-        });
-
-        DeleteBtn.setText("Delete");
-        DeleteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteBtnActionPerformed(evt);
+                DeleteLecturerBtnActionPerformed(evt);
             }
         });
 
@@ -546,13 +545,13 @@ public class AdminMain extends javax.swing.JFrame {
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(LecturersListLayout.createSequentialGroup()
-                        .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LecturerSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(SearchBtn)))
+                        .addComponent(SearchLecBtn)))
                 .addContainerGap(43, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LecturersListLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DeleteLecturerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LecListEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -566,22 +565,22 @@ public class AdminMain extends javax.swing.JFrame {
                 .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(LecturersListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SearchBtn))
+                    .addComponent(LecturerSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchLecBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(LecturersListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DeleteBtn)
+                    .addComponent(DeleteLecturerBtn)
                     .addComponent(LecListEditBtn)
                     .addComponent(LecListCloseBtn))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        SearchBtn1.setText("Search");
-        SearchBtn1.addActionListener(new java.awt.event.ActionListener() {
+        SearchStudBtn.setText("Search");
+        SearchStudBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchBtn1ActionPerformed(evt);
+                SearchStudBtnActionPerformed(evt);
             }
         });
 
@@ -632,9 +631,9 @@ public class AdminMain extends javax.swing.JFrame {
                         .addGroup(StudentsListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(StudentsListLayout.createSequentialGroup()
-                                .addComponent(SearchField1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(StudentSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(SearchBtn1)))))
+                                .addComponent(SearchStudBtn)))))
                 .addContainerGap(58, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StudentsListLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -651,8 +650,8 @@ public class AdminMain extends javax.swing.JFrame {
                 .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(StudentsListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SearchField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SearchBtn1))
+                    .addComponent(StudentSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchStudBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -753,10 +752,10 @@ public class AdminMain extends javax.swing.JFrame {
         LecturersList.setVisible(true);
         LecturersList.setSize(1000,700);
         // Initialize table
-        DefaultTableModel model = (DefaultTableModel)LecturerListTable.getModel();
+        DefaultTableModel lecturersModel = (DefaultTableModel)LecturerListTable.getModel();
         for(int i =0 ; i < lecturers.size() ; i++){{
             String [] tableDataRow = {lecturers.get(i).getID(),lecturers.get(i).getName(),lecturers.get(i).getEmail(), String.valueOf(lecturers.get(i).getPmRole())};
-            model.addRow(tableDataRow);               
+            lecturersModel.addRow(tableDataRow);               
             }
         }
     }//GEN-LAST:event_LecListMainBtnActionPerformed
@@ -800,7 +799,7 @@ public class AdminMain extends javax.swing.JFrame {
     }//GEN-LAST:event_EditLecUpdateBtnActionPerformed
 
     private void EditStdUpdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditStdUpdBtnActionPerformed
-        for (Student student:students){
+         for (Student student:students){
             if (student.getID().equals(EditStdIDLbl.getText())){
                 student.setName(EditStdNameField.getText());
                 student.setEmail(EditStdEmailField.getText());
@@ -819,124 +818,346 @@ public class AdminMain extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_EditStdUpdBtnActionPerformed
-
-    private void RegLecBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegLecBtnActionPerformed
-    String name = RegLecNameField.getText();
-    String email = RegLecEmailField.getText();
-    String password = RegLecPassField.getText();
     
-    // Validate name length (More than 1 )
-    if (name.length() > 2){
-        // Validate Email check @ and .com
-        if (email.contains("@") && email.contains(".com")){
-            // Validate Password
-            if(password.length() > 2 ){
-                JOptionPane.showMessageDialog(null,"Successfullt Registered");
-                int newIntId = Integer.parseInt(lecturers.get(lecturers.size() - 1).getID().substring(2)) + 1;
-                String newId = String.valueOf(newIntId);
-                // make sure new id is two digit
-                if (newId.length() != 2){
-                    newId = "0"+ newId;
+    
+    
+    
+    
+    private void RegLecBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegLecBtnActionPerformed
+        String name = RegLecNameField.getText();
+        String email = RegLecEmailField.getText();
+        String password = RegLecPassField.getText();
+        String filePath = Lecturerfile;
+
+
+        // Validate name length (More than 1 )
+        if (name.length() > 2){
+            // Validate Email check @ and .com
+            if (email.contains("@") && email.contains(".com")){
+                // Validate Password
+                if(password.length() > 2 ){
+                    JOptionPane.showMessageDialog(null,"Successfully Registered");
+                    int newIntId = Integer.parseInt(lecturers.get(lecturers.size() - 1).getID().substring(2)) + 1;
+                    String newId = String.valueOf(newIntId);
+                    // make sure new id is two digits
+                    if (newId.length() != 2){
+                        newId = "0"+ newId;
+                    }
+                    // add id identifier
+                    newId = "LR"+ newId;
+                    Lecturer newLecturer = new Lecturer(newId, name, email, password, RegLecPmCheckBox.isSelected());
+                    lecturers.add(newLecturer);
+
+                    // Write to text file
+                    writeDataToFile(newLecturer, filePath);
                 }
-                // add id identifier
-                newId = "LR"+ newId;
-                lecturers.add(new Lecturer(newId, name, email, password,RegLecPmCheckBox.isSelected()));
+                else{
+                    JOptionPane.showMessageDialog(null,"Please Fill in password");
+                }
             }
             else{
-                JOptionPane.showMessageDialog(null,"Please Fill in password");
+                JOptionPane.showMessageDialog(null,"Please Fill in a valid email");
             }
         }
         else{
-            JOptionPane.showMessageDialog(null,"Please Fill in a valid email");
-        }
-    }
-    else{
-        JOptionPane.showMessageDialog(null,"Please Fill in a name");
-    }
-    
+            JOptionPane.showMessageDialog(null,"Please Fill in a name");
+        }   
     }//GEN-LAST:event_RegLecBtnActionPerformed
 
-    private void RegStdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegStdBtnActionPerformed
-    String name = RegStdNameField.getText();
-    String email = RegStdEmailField.getText();
-    String password = RegStdPassField.getText();
-    String intake = DialogIntakeCodeLabel.getText();
     
-    // Validate name length (More than 1 )
-    if (name.length() > 2){
-        // Validate Email check @ and .com
-        if (email.contains("@") && RegStdEmailField.getText().contains(".com")){
-            // Validate Password
-            if(password.length() > 2 ){
-                JOptionPane.showMessageDialog(null,"Successfullt Registered");
-                int newIntId = Integer.parseInt(students.get(students.size() - 1).getID().substring(2)) + 1;
-                String newId = String.valueOf(newIntId);
-                // make sure new id is two digit
-                if (newId.length() != 2){
-                    newId = "0"+ newId;
+    
+    private void RegStdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegStdBtnActionPerformed
+        String name = RegStdNameField.getText();
+        String email = RegStdEmailField.getText();
+        String password = RegStdPassField.getText();
+        String intake = RegStdIntakeField.getText();
+        String filePath = Studentfile;
+
+        // Validate name length (More than 1 )
+        if (name.length() > 2){
+            // Validate Email check @ and .com
+            if (email.contains("@") && email.contains(".com")){
+                // Validate Password
+                if(password.length() > 2 ){
+                    int newIntId = Integer.parseInt(students.get(students.size() - 1).getID().substring(2)) + 1;
+                    String newId = String.valueOf(newIntId);
+                    // make sure new id is two digit
+                    if (newId.length() != 2){
+                        newId = "0"+ newId;
+                    }
+                    
+                    // add id identifier
+                    newId = "TP"+ newId;
+                    Student newStudent = new Student(newId, name, email, password, intake);
+                    students.add(newStudent);
+
+                    // Write to text file
+                    writeDataToFile(newStudent, filePath);
                 }
-                // add id identifier
-                newId = "TP"+ newId;
-                students.add(new Student(newId, name, email, password,"0606"));
+                else{
+                    JOptionPane.showMessageDialog(null,"Please Fill in password");
+                }
             }
             else{
-                JOptionPane.showMessageDialog(null,"Please Fill in password");
+                JOptionPane.showMessageDialog(null,"Please Fill in a valid email");
             }
         }
         else{
-            JOptionPane.showMessageDialog(null,"Please Fill in a valid email");
+            JOptionPane.showMessageDialog(null,"Please Fill in a name");
         }
-    }
-    else{
-        JOptionPane.showMessageDialog(null,"Please Fill in a name");
-    }
-        
     }//GEN-LAST:event_RegStdBtnActionPerformed
 
-    private void SearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchBtnActionPerformed
+    
+    private void writeDataToFile(Object data, String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            if (data instanceof Lecturer lecturer) {
+                String line = lecturer.getID() + "/ " + lecturer.getName() + "/ " + lecturer.getEmail() + "/ " + lecturer.getPassword() + "/ " + lecturer.getPmRole();
+                writer.write(line);
+                writer.newLine();
+            } else if (data instanceof Student student) {
+                String line = student.getID() + "/ " + student.getName() + "/ " + student.getEmail() + "/ " + student.getPassword() + "/ " + student.getIntake();
+                writer.write(line);
+                writer.newLine();
+            }
+            JOptionPane.showMessageDialog(null, "Data written to file successfully");
+        } catch (IOException e) { // Print the exception stack trace for debugging
+            JOptionPane.showMessageDialog(null, "Error writing data to file");
+        }
+    }
+    
+    
+    
+    private void SearchLecBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchLecBtnActionPerformed
+        String searchText = LecturerSearchField.getText().trim().toLowerCase();
+        DefaultTableModel model = (DefaultTableModel) LecturerListTable.getModel();
+        model.setRowCount(0);
+        if (searchText.isEmpty()) {
 
-    private void DeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DeleteBtnActionPerformed
+            for (User lecturer : lecturers) {
+                String[] tableDataRow = {lecturer.getID(), lecturer.getName(), lecturer.getEmail(), lecturer.getPassword()};
+                model.addRow(tableDataRow);
+            }
+        } else {
+            boolean matchFound = false;
+            for (User lecturer : lecturers) {
+                if (lecturer.getID().toLowerCase().contains(searchText) ||
+                    lecturer.getName().toLowerCase().contains(searchText) ||
+                    lecturer.getEmail().toLowerCase().contains(searchText)) {
+                    String[] tableDataRow = {lecturer.getID(), lecturer.getName(), lecturer.getEmail(), lecturer.getPassword()};
+                    model.addRow(tableDataRow);
+                    matchFound = true;
+                }
+            }
+            if (!matchFound) {
+                // Optionally, handle the case where no matches are found (e.g., show a message)
+                System.out.println("No matches found");
+            }
+        }
+    }//GEN-LAST:event_SearchLecBtnActionPerformed
+
+    private void DeleteLecturerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteLecturerBtnActionPerformed
+        int selectedRow = LecturerListTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String selectedID = LecturerListTable.getValueAt(selectedRow, 0).toString();
+            // Assuming the ID is in the first column (index 0) of the table
+            // You can replace 0 with the actual index of the ID column if it's different
+
+            // Find the lecturer in the ArrayList based on the selected ID
+            Lecturer selectedLecturer = null;
+            for (Lecturer lecturer : lecturers) {
+                if (lecturer.getID().equals(selectedID)) {
+                    selectedLecturer = lecturer;
+                    break;
+                }
+            }
+
+            if (selectedLecturer != null) {
+                // Confirm deletion with user
+                int confirmDelete = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this lecturer?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+                if (confirmDelete == JOptionPane.YES_OPTION) {
+                    // Remove the lecturer from the ArrayList
+                    lecturers.remove(selectedLecturer);
+
+                    // Remove the row from the table
+                    DefaultTableModel model = (DefaultTableModel) LecturerListTable.getModel();
+                    model.removeRow(selectedRow);
+
+                    // Delete from the text file
+                    deleteDataFromFile(selectedLecturer, Lecturerfile);
+
+                    JOptionPane.showMessageDialog(null, "Lecturer deleted successfully");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Selected lecturer not found in the list");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a lecturer first");
+        }
+    }//GEN-LAST:event_DeleteLecturerBtnActionPerformed
 
     private void LecListEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LecListEditBtnActionPerformed
-        int selectedLecturer = LecturerListTable.getSelectedRow();
-        if (selectedLecturer != -1){
-            EditLecIDLbl.setText(lecturers.get(selectedLecturer).getID());
-            EditLecNameField.setText(lecturers.get(selectedLecturer).getName());
-            EditLecEmailField.setText(lecturers.get(selectedLecturer).getEmail());
-            EditLecPassField.setText(lecturers.get(selectedLecturer).getPassword());
-            EditLecPMCheckBox.setSelected(lecturers.get(selectedLecturer).getPmRole());
-            EditStudent.setVisible(true);
-            EditStudent.setSize(1000,700);
-        }
-        else{
+        int selectedRow = LecturerListTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String selectedID = LecturerListTable.getValueAt(selectedRow, 0).toString();
+            // Assuming the ID is in the first column (index 0) of the table
+            // You can replace 0 with the actual index of the ID column if it's different
+
+            // Find the lecturer in the ArrayList based on the selected ID
+            Lecturer selectedLecturer = null;
+            for (Lecturer lecturer : lecturers) {
+                if (lecturer.getID().equals(selectedID)) {
+                    selectedLecturer = lecturer;
+                    break;
+                }
+            }
+
+            if (selectedLecturer != null) {
+                // Set the values in the EditLecturer frame
+                EditLecIDLbl.setText(selectedLecturer.getID());
+                EditLecNameField.setText(selectedLecturer.getName());
+                EditLecEmailField.setText(selectedLecturer.getEmail());
+                EditLecPassField.setText(selectedLecturer.getPassword());
+                EditLecPMCheckBox.setSelected(selectedLecturer.getPmRole());
+
+                // Show the EditLecturer frame
+                EditLecturer.setVisible(true);
+                EditLecturer.setSize(1000, 700);
+            } else {
+                JOptionPane.showMessageDialog(null, "Selected lecturer not found in the list");
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Please select a lecturer first");
         }
     }//GEN-LAST:event_LecListEditBtnActionPerformed
 
-    private void SearchBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchBtn1ActionPerformed
+    
+    private void SearchStudBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchStudBtnActionPerformed
+        String searchText = StudentSearchField.getText().trim().toLowerCase();
+        DefaultTableModel model = (DefaultTableModel) StudentListTable.getModel();
+        model.setRowCount(0);
+        if (searchText.isEmpty()) {
+            for (User student : students) {
+                String[] tableDataRow = {student.getID(), student.getName(), student.getEmail(), ((Student) student).getIntake()};
+                model.addRow(tableDataRow);
+            }
+        } else {
+            boolean matchFound = false;
+            for (User student : students) {
+                String id = student.getID().toLowerCase();
+                String name = student.getName().toLowerCase();
+                String email = student.getEmail().toLowerCase();
+                String intake = ((Student) student).getIntake().toLowerCase();  // Ensure you handle null intake values
+
+                if (id.contains(searchText) || name.contains(searchText) || email.contains(searchText) || intake.contains(searchText)) {
+                    String[] tableDataRow = {student.getID(), student.getName(), student.getEmail(), intake};
+                    model.addRow(tableDataRow);
+                    matchFound = true;
+                }
+            }
+            if (!matchFound) {
+                System.out.println("No matches found");
+                // Optionally, you can show a message or handle the case where no matches are found
+            }
+        }  
+    }//GEN-LAST:event_SearchStudBtnActionPerformed
 
     private void DeleteStdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteStdBtnActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = StudentListTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String selectedID = StudentListTable.getValueAt(selectedRow, 0).toString();
+            // Assuming the ID is in the first column (index 0) of the table
+            // You can replace 0 with the actual index of the ID column if it's different
+
+            // Find the student in the ArrayList based on the selected ID
+            User selectedStudent = null;
+            for (User student : students) {
+                if (student.getID().equals(selectedID)) {
+                    selectedStudent = student;
+                    break;
+                }
+            }
+
+            if (selectedStudent != null) {
+                // Confirm deletion with user
+                int confirmDelete = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this student?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+                if (confirmDelete == JOptionPane.YES_OPTION) {
+                    // Remove the student from the ArrayList
+                    students.remove(selectedStudent);
+
+                    // Remove the row from the table
+                    DefaultTableModel model = (DefaultTableModel) StudentListTable.getModel();
+                    model.removeRow(selectedRow);
+
+                    // Delete from the text file
+                    deleteDataFromFile(selectedStudent, Studentfile);
+
+                    JOptionPane.showMessageDialog(null, "Student deleted successfully");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Selected student not found in the list");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a student first");
+        }
     }//GEN-LAST:event_DeleteStdBtnActionPerformed
 
-    private void StdListEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StdListEditBtnActionPerformed
-        int selectedStudent = StudentListTable.getSelectedRow();
-        if (selectedStudent != -1){
-            EditStdIDLbl.setText(students.get(selectedStudent).getID());
-            EditStdNameField.setText(students.get(selectedStudent).getName());
-            EditStdEmailField.setText(students.get(selectedStudent).getEmail());
-            EditStdPassField.setText(students.get(selectedStudent).getPassword());
-            EditStdIntakeField.setText(students.get(selectedStudent).getIntake());
-            EditStudent.setVisible(true);
-            EditStudent.setSize(1000,700);
+    
+     private void deleteDataFromFile(User data, String fileName) {
+        ArrayList<String> lines = new ArrayList<>();
+        
+        // Read all lines from the file except the line containing the data's ID
+        try {
+            Files.lines(Paths.get(fileName))
+                    .filter(line -> !line.contains(data.getID()))
+                    .forEach(lines::add);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        else{
+
+        // Write the updated lines back to the file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (String line : lines) {
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    private void StdListEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StdListEditBtnActionPerformed
+        int selectedRow = StudentListTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String selectedID = StudentListTable.getValueAt(selectedRow, 0).toString();
+            // Assuming the ID is in the first column (index 0) of the table
+            // You can replace 0 with the actual index of the ID column if it's different
+
+            // Find the student in the ArrayList based on the selected ID
+            User selectedStudent = null;
+            for (User student : students) {
+                if (student.getID().equals(selectedID)) {
+                    selectedStudent = student;
+                    break;
+                }
+            }
+
+            if (selectedStudent != null) {
+                // Set the values in the EditStudent frame
+                EditStdIDLbl.setText(selectedStudent.getID());
+                EditStdNameField.setText(selectedStudent.getName());
+                EditStdEmailField.setText(selectedStudent.getEmail());
+                EditStdPassField.setText(selectedStudent.getPassword());
+                EditStdIntakeField.setText(((Student) selectedStudent).getIntake());
+                
+
+                // Show the EditStudent frame
+                EditStudent.setVisible(true);
+                EditStudent.setSize(1000, 700);
+            } else {
+                JOptionPane.showMessageDialog(null, "Selected student not found in the list");
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Please select a student first");
         }
     }//GEN-LAST:event_StdListEditBtnActionPerformed
@@ -972,14 +1193,6 @@ public class AdminMain extends javax.swing.JFrame {
         StudentsList.setVisible(false);
     }//GEN-LAST:event_StdListCloseBtnActionPerformed
 
-    private void EditLecPassFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditLecPassFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditLecPassFieldActionPerformed
-
-    private void SearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchFieldActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1000,9 +1213,8 @@ public class AdminMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton DeleteBtn;
+    private javax.swing.JButton DeleteLecturerBtn;
     private javax.swing.JButton DeleteStdBtn;
-    private javax.swing.JLabel DialogIntakeCodeLabel;
     private javax.swing.JButton EditLecCancelBtn;
     private javax.swing.JTextField EditLecEmailField;
     private javax.swing.JLabel EditLecIDLbl;
@@ -1023,6 +1235,7 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JButton LecListEditBtn;
     private javax.swing.JButton LecListMainBtn;
     private javax.swing.JTable LecturerListTable;
+    private javax.swing.JTextField LecturerSearchField;
     private javax.swing.JDialog LecturersList;
     private javax.swing.JLabel PmRoleLabel;
     private javax.swing.JButton RegLecBtn;
@@ -1035,20 +1248,20 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JButton RegStdBtn;
     private javax.swing.JButton RegStdCloseBtn;
     private javax.swing.JTextField RegStdEmailField;
+    private javax.swing.JTextField RegStdIntakeField;
     private javax.swing.JButton RegStdMainBtn;
     private javax.swing.JTextField RegStdNameField;
     private javax.swing.JTextField RegStdPassField;
     private javax.swing.JDialog RegisterLecturer;
     private javax.swing.JDialog RegisterStudent;
     private javax.swing.JButton SaveNLogOut;
-    private javax.swing.JButton SearchBtn;
-    private javax.swing.JButton SearchBtn1;
-    private javax.swing.JTextField SearchField;
-    private javax.swing.JTextField SearchField1;
+    private javax.swing.JButton SearchLecBtn;
+    private javax.swing.JButton SearchStudBtn;
     private javax.swing.JButton StdListCloseBtn;
     private javax.swing.JButton StdListEditBtn;
     private javax.swing.JButton StudListMainBtn;
     private javax.swing.JTable StudentListTable;
+    private javax.swing.JTextField StudentSearchField;
     private javax.swing.JDialog StudentsList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

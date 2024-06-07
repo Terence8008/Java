@@ -19,11 +19,16 @@ import java.util.logging.Logger;
  * @author Terence
  */
 public class FileIO {
+    // Set your own file location
+    public static String studentFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\StudentData.txt";
+    public static String lecturerFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Lecturer.txt";
+    public static String projectFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Projects.txt";
+    public static String adminFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Admin.txt";
+    public static String evaluationFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Evaluation Result.txt";
+    
     // static global method
-
     public static ArrayList<Student> ImportStudents(){
         ArrayList<Student> students = new ArrayList<>();
-        String studentFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\StudentData.txt";
         File Sfile = new File(studentFilepath);
         
         // Import Student file into array
@@ -47,7 +52,6 @@ public class FileIO {
     
     public static ArrayList<Project> ImportProjects(){
         ArrayList<Project> projects = new ArrayList<>();
-        String projectFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Projects.txt";
         File Pfile = new File(projectFilepath);
         
         // Import project file into array
@@ -71,7 +75,6 @@ public class FileIO {
     
     public static ArrayList<Lecturer> ImportLecturer(){
         ArrayList<Lecturer> lecturers = new ArrayList<>();
-        String lecturerFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Lecturer.txt";
         File LFile = new File(lecturerFilepath);
         
         // Import lecturer file into array
@@ -95,7 +98,6 @@ public class FileIO {
     
     public static ArrayList<Admin> ImportAdmin(){
         ArrayList<Admin> admins = new ArrayList<>();
-        String adminFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Admin.txt";
         File AFile = new File(adminFilepath);
         
          // Import admin file into array
@@ -119,7 +121,6 @@ public class FileIO {
     
     public static ArrayList<EvaluationResult> ImportEvaluationResult(){
         ArrayList<EvaluationResult> evaluationResults = new ArrayList<>();
-        String evaluationFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Evaluation Result.txt";
         File EFile = new File(evaluationFilepath);
         
         // Import evaluation file into array
@@ -142,7 +143,6 @@ public class FileIO {
     }
     
     public static void ExportStudents(ArrayList<Student> students){
-        String studentFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\StudentData.txt";
         File Sfile = new File(studentFilepath);
         
         try{
@@ -168,7 +168,6 @@ public class FileIO {
     }
     
     public static void ExportProjects(ArrayList<Project> projects){
-        String projectFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Projects.txt";
         File Pfile = new File(projectFilepath);
         
         try{
@@ -194,7 +193,6 @@ public class FileIO {
     }
     
     public static void ExportLecturer(ArrayList<Lecturer> lecturers){
-        String lecturerFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Lecturer.txt";
         File LFile = new File(lecturerFilepath);
         
         try{
@@ -220,7 +218,6 @@ public class FileIO {
     }
     
     public static void ExportAdmin(ArrayList<Admin> admins){
-        String adminFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Admin.txt";
         File Afile = new File(adminFilepath);
         
         try{
@@ -246,7 +243,6 @@ public class FileIO {
     }
     
     public static void ExportEvaluationResult(ArrayList<EvaluationResult> evaluationResults){
-        String evaluationFilepath = "C:\\Users\\Terence\\Desktop\\Terence\\Apu\\Sem 3\\Java\\Assingnment\\Assignment\\src\\assignment\\Evaluation Result.txt";
         File Efile = new File(evaluationFilepath);
         
         try{

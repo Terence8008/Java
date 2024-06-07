@@ -676,6 +676,10 @@ public class ProjectManagerMain extends javax.swing.JFrame {
         DefaultTableModel Indmodel = (DefaultTableModel)AssignAssIndTable.getModel();
         DefaultTableModel Intmodel = (DefaultTableModel)AssignAssIntTable.getModel();
         
+        // Clear table
+        Indmodel.setRowCount(0);
+        Intmodel.setRowCount(0);
+        
         for (Student student: students){
             if (student.getProjects().isEmpty()){
                 String [] tableDataRow = {student.getID(), student.getName(), student.getIntake()}; 
