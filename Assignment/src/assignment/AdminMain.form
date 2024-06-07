@@ -568,7 +568,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="DialogIntakeCodeLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Generated intake code"/>
+            <Property name="text" type="java.lang.String" value="2406"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="RegStdCloseBtn">

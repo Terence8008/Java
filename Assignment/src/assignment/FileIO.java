@@ -60,7 +60,7 @@ public class FileIO {
                 String[] dataRow = line.split("/");
                 if (dataRow.length != 1) // Check if the datarow have been split using the delimiter
                 { 
-                    projects.add(new Project(dataRow[0].trim(),dataRow[1].trim(),dataRow[2].trim(),dataRow[3].trim(),dataRow[4].trim(),dataRow[5].trim(),dataRow[6].trim(),dataRow[7].trim(),dataRow[8].trim())); //Create project object and add to project arraylist                              
+                    projects.add(new Project(dataRow[0].trim(),dataRow[1].trim(),dataRow[2].trim(),dataRow[3].trim(),dataRow[4].trim(),dataRow[5].trim(),dataRow[6].trim(),dataRow[7].trim(),dataRow[8].trim(),dataRow[9].trim())); //Create project object and add to project arraylist                              
                 }
             }               
         } catch (IOException ex) {
@@ -180,7 +180,7 @@ public class FileIO {
             
             // Check how many line to be writtern to text file
             for(int i =0; i < projects.size(); i++){
-                String lineWrite = projects.get(i).getProjectID()+"/ "+projects.get(i).getStudentID() +"/ "+projects.get(i).getSupervisorID()+ "/ "+projects.get(i).getSecondMarkerID()+"/ "+ projects.get(i).getAssessmentType() + "/ "+projects.get(i).getPresentationDate() + "/ "+projects.get(i).getSubmissionLink() +"/ "+ projects.get(i).getSubmissionDate() +"/ "+projects.get(i).getReportStatus();
+                String lineWrite = projects.get(i).getProjectID()+"/ "+projects.get(i).getStudentID() +"/ "+projects.get(i).getSupervisorID()+ "/ "+projects.get(i).getSecondMarkerID()+"/ "+ projects.get(i).getAssessmentType() + "/ "+projects.get(i).getPresentationDate() + "/ "+projects.get(i).getSubmissionLink() +"/ "+ projects.get(i).getSubmissionDate() +"/ "+projects.get(i).getReportStatus() + "/ " + projects.get(i).getPresentationStatus();
                 bw.write(lineWrite);
                 bw.newLine();
             }    

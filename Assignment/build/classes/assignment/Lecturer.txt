@@ -1,6 +1,6 @@
 ID, Name, Email, password, pmRole,
-LR01/ Spongebob/ spongebob@mail.com/Spongebob123/true
-LR02/ Patrick/ Partrick@mail.com/Patrick123/false
+LR01/ bob/ spongebob@mail.com/bob123/true
+LR02/ pat/ Partrick@mail.com/pat123/false
 LR03/ Potato/ Potato@mail.com/Potato123/false
-LR04/ Patrick/ Patrick@mail.com/Patrick123/false
+LR04/ Jumbo/ Jumbo@mail.com/Patrick123/false
 LR05/ Pikachu/ Pikachu@mail.com/Pikachu123/false

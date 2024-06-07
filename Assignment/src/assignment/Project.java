@@ -4,24 +4,17 @@
  */
 package assignment;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Terence
  */
 public class Project {
-   private String projectID, studentID, supervisorID, secondMarkerID, assessmentType, presentationDate, submissionLink, submissionDate, reportStatus;
+   private String projectID, studentID, supervisorID, secondMarkerID, assessmentType, presentationDate, submissionLink, submissionDate, reportStatus, presentationStatus;
    private Student student;
    private EvaluationResult evalutaionResult;
    
-   public Project(String projectID,String studentID, String supervisorID,String secondMarkerID, String assessmentType, String presentationDate, String submissionLink, String submissionDate, String reportStatus){
+   public Project(String projectID,String studentID, String supervisorID,String secondMarkerID, String assessmentType, String presentationDate, String submissionLink, String submissionDate, String reportStatus, String presentationStatus){
        this.projectID = projectID;
        this.studentID = studentID;
        this.supervisorID = supervisorID;
@@ -31,6 +24,7 @@ public class Project {
        this.submissionLink = submissionLink;
        this.submissionDate = submissionDate;
        this.reportStatus = reportStatus;
+       this.presentationStatus = presentationStatus;
    }
    
    //Getter
@@ -68,6 +62,10 @@ public class Project {
    
    public String getReportStatus(){
        return reportStatus;
+   }
+   
+   public String getPresentationStatus(){
+       return presentationStatus;
    }
    
    public Student getStudent(){
@@ -115,6 +113,10 @@ public class Project {
    
     public void setReportStatus(String reportStatus){
         this.reportStatus = reportStatus;
+    }
+    
+    public void setPresentationStatus(String presentationStatus){
+        this.presentationStatus = presentationStatus;
     }
         
     public void setStudent(Student student){

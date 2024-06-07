@@ -423,7 +423,7 @@ public class AdminMain extends javax.swing.JFrame {
 
         RegStdEmailField.setToolTipText("");
 
-        DialogIntakeCodeLabel.setText("Generated intake code");
+        DialogIntakeCodeLabel.setText("2406");
 
         RegStdCloseBtn.setText("Close");
         RegStdCloseBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -860,6 +860,7 @@ public class AdminMain extends javax.swing.JFrame {
     String name = RegStdNameField.getText();
     String email = RegStdEmailField.getText();
     String password = RegStdPassField.getText();
+    String intake = DialogIntakeCodeLabel.getText();
     
     // Validate name length (More than 1 )
     if (name.length() > 2){

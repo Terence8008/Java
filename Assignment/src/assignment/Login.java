@@ -165,7 +165,7 @@ public class Login extends javax.swing.JFrame {
                     }
                     else{
                         JOptionPane.showMessageDialog(null,"Login as Lecturer");
-                        new LecturerMain().setVisible(true);
+                        new LecturerMain(lecturer, students, projects, evaluationResults).setVisible(true);
                         this.dispose();
                     }
                 }

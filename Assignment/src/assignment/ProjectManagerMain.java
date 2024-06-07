@@ -846,7 +846,7 @@ public class ProjectManagerMain extends javax.swing.JFrame {
                 if (student.getIntake().equals(selectedIntake) && student.getProjects().isEmpty()){
                     int newID = Integer.parseInt(projects.get(projects.size()-1).getProjectID().substring(1)) +1;
                     String newIDIdentifier = "P" + String.valueOf(newID);
-                    projects.add(new Project(newIDIdentifier, student.getID(), supervisorID, secondMarkerID, selectedAssementType, "", "", "", "Pending"));
+                    projects.add(new Project(newIDIdentifier, student.getID(), supervisorID, secondMarkerID, selectedAssementType, "Not set", "Not set", "Not set", "Pending","Pending"));
                 }
             }
             RelinkStudentProjects();
@@ -886,7 +886,7 @@ public class ProjectManagerMain extends javax.swing.JFrame {
                 if(student.getID().equals(studentId)){
                     int newID = Integer.parseInt(projects.get(projects.size()-1).getProjectID().substring(1)) +1;
                     String newIDIdentifier = "P" + String.valueOf(newID);
-                    projects.add(new Project(newIDIdentifier, student.getID(), supervisorID, secondMarkerID, selectedAssementType, "", "", "", "Pending"));
+                    projects.add(new Project(newIDIdentifier, student.getID(), supervisorID, secondMarkerID, selectedAssementType, "Not set", "Not set", "Not set", "Pending", "Pending"));
                 }
             }
             RelinkStudentProjects();
